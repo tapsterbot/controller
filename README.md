@@ -17,7 +17,7 @@ Web-based controller for the Tapster Sidekick robot
   npm install
   ```
 
-2.  Download all git submodules. We include [minicap](https://github.com/tapsterbot/minicap) as a Git submodule. And minicap includes libjpeg-turbo.
+2.  Download all git submodules. We include [minicap](https://github.com/tapsterbot/minicap) as a Git submodule. And minicap includes [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/).
   ```
   git submodule update --init --recursive
   ```
