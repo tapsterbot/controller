@@ -1,0 +1,3 @@
+[submodule "minicap"]
+	path = minicap
+	url = https://github.com/tapsterbot/minicap
