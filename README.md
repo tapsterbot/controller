@@ -3,7 +3,7 @@ Web-based controller for the Tapster Sidekick robot
 
 [![Controller Demo Video](https://img.youtube.com/vi/MAu_O9O79Sc/0.jpg)](https://www.youtube.com/watch?v=MAu_O9O79Sc)
 
-## Buidling
+## Building
 
 1.  install the required Node modules:
   ```
