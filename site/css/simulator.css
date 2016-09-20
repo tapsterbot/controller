@@ -1,0 +1,102 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+  padding: 0px;
+  background:#eee;
+  margin: 0
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.simulator {
+  width: 100%;
+  height: 100%;
+}
+
+svg {
+  display:block;
+  border:1px;
+  solid #ccc;
+  position:absolute;
+  top:5%;
+  left:5%;
+  width:90%;
+  height:90%;
+  fill: rgba(225,225,225,0.9);
+  z-index:2;
+}
+
+.axis {
+  stroke: #000;
+  stroke-width: .1pt;
+  visibility: hidden;
+}
+
+.boundary-circle {
+  fill: rgba(225,225,225,0.3);
+  stroke: #000;
+  stroke-width: 0;
+  visibility: hidden;
+}
+
+.arm-circle {
+  fill: rgba(225,225,225,0.3);
+  stroke: #000;
+  stroke-width: 0;
+  visibility: hidden;
+}
+
+.shoulder {
+  fill: #aaa;
+  stroke: #000;
+  stroke-width: 0;
+}
+
+.upper-arm {
+  stroke: rgba(50,50,50,0.7);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.forearm {
+  stroke: rgba(50,50,50,0.7);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+
+/* TODO: http://jsfiddle.net/9g1tqgnq/ */
+.pointer {
+  fill: rgba(250,250,250,.2);
+  stroke: #000;
+  stroke-width: .1pt;
+  z-index:2;
+}
+
+.device {
+  fill: rgba(250,250,250,.1);
+  stroke: #000;
+  stroke-width: .1pt;
+}
+
+
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 10px;
+}
+
+
+video {
+  position: absolute;
+  width: 200px;
+  top: 100px;
+  left: 200px;
+  z-index:1;
+}
