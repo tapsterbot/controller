@@ -46,3 +46,5 @@ Web-based controller for the Tapster Sidekick robot
   ```
   http://localhost:8080/
   ```
+  
+![Controller Demo Screenshot](doc/screenshot.png)  
