@@ -22,6 +22,7 @@ Web-based controller for the Tapster Sidekick robot
   ```
   cd minicap
   ndk-build
+  cd ..
   ```
 
   (You should now see the required Android binaries available in `./libs`.)
@@ -31,17 +32,20 @@ Web-based controller for the Tapster Sidekick robot
   ```
   cd minicap/example
   npm install
+  cd ../..
   ```
   
-  5. Launch the controller by opening the controller URL:
+
+
+## Running
+
+  1. Run server.js from the main checkout directory:
+
+  ```
+  node server.js
+  ```
+
+  2. Open the controller URL:
   ```
   http://localhost:8080/
   ```
-
-## Buidling
-
-Launch server.js from the main checkout directory:
-
-```
-node server.js
-```
