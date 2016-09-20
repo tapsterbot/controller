@@ -5,20 +5,17 @@ Web-based controller for the Tapster Sidekick robot
 
 ## Buidling
 
-  1.  install the required Node modules:
-
+1.  install the required Node modules:
   ```
   npm install
   ```
 
-  2.  Download all git submodules. We include minicap as a Git submodule. And minicap includes libjpeg-turbo.
-
+2.  Download all git submodules. We include minicap as a Git submodule. And minicap includes libjpeg-turbo.
   ```
   git submodule update --init --recursive
   ```
 
-  3.  Build minicap. This requires compiling with the Android NDK:
-
+3.  Build minicap. This requires compiling with the Android NDK:
   ```
   cd minicap
   ndk-build
@@ -27,8 +24,7 @@ Web-based controller for the Tapster Sidekick robot
 
   (You should now see the required Android binaries available in `./libs`.)
 
-  4.  Install minicap's Node modules:
-
+4.  Install minicap's Node modules:
   ```
   cd minicap/example
   npm install
@@ -39,13 +35,14 @@ Web-based controller for the Tapster Sidekick robot
 
 ## Running
 
-  1. Run server.js from the main checkout directory:
+(*Make sure you have connected an Android device via USB and that USB debugging is enabled on the device.*)
 
+1. Run server.js from the main checkout directory:
   ```
   node server.js
   ```
 
-  2. Open the controller URL:
+2. Open the controller URL:
   ```
   http://localhost:8080/
   ```
