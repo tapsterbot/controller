@@ -55,3 +55,42 @@ Web-based controller for the Tapster Sidekick robot
   ```
   
 ![Controller Demo Screenshot](doc/screenshot.png)  
+
+
+## F.A.Q. / Issues
+
+Q: How do I tap the screen? Where's the tap/click command?!
+
+A: There's currently no gesture in the controller web interface for controlling the z-height of Sidekick's arms. For the moment, here's how you can move each arm up and down.
+
+When you launch server.js, it also launches a REPL prompt. The left arm's z-axis servo is mapped to the object "s3" (for servo #3), and the right arm's z-axis servo is mapped to "s6" (for servo #6).
+
+**To raise arm to a safety height:**<br>
+('100' is the height, '1000' is the number of milliseconds the servo will take to complete the move.)
+```
+>> // Left z-axis
+>> s3.to(100,1000)
+
+>> // Right z-axis
+>> s6.to(100,1000)
+```
+
+**To move arm to screen surface:**<br>
+(Note: you might have to change '70' a little, depending on how your Sidekick robot was assembled.)
+```
+>> // Left z-axis
+>> s3.to(70,1000)
+
+>> // Right z-axis
+>> s6.to(70,1000)
+```
+
+**To lower arm to side of phone to hit device power and volume buttons:**<br>
+(Note: You should move the stylus away from the phone screen's surface beforehand.)
+```
+>> // Left z-axis
+>> s3.to(20,1000) 
+
+>> // Right z-axis
+>> s6.to(20,1000) 
+```
