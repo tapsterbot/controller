@@ -18,10 +18,43 @@ Demo: http://www.codedread.com/dragtest.svg
 http://stackoverflow.com/q/21852543
 By http://stackoverflow.com/users/1310814/serverbloke
 
+(also https://msdn.microsoft.com/en-us/library/hh535760(v=vs.85).aspx )
+
 
 ////////////////////////////////////////////////
 "How to scale SVG image to fill browser window?"
 http://stackoverflow.com/a/5644436
 http://phrogz.net/svg/svg_in_xhtml5.xhtml
 By http://stackoverflow.com/users/405017/phrogz
+
+
+////////////////////////////////////////////////
+Point class
+https://github.com/moagrius/Point/blob/master/Point.js
+
+
+////////////////////////////////////////////////
+Basic collisions
+http://devmag.org.za/2009/04/13/basic-collision-detection-in-2d-part-1/
+http://devmag.org.za/2009/04/17/basic-collision-detection-in-2d-part-2/
+
+
+////////////////////////////////////////////////
+Test if point is on a line segment
+http://stackoverflow.com/questions/328107/how-can-you-determine-a-point-is-between-two-other-points-on-a-line-segment/328193#328193
+
+
+////////////////////////////////////////////////
+Find intersections of a line segment and a circle
+https://bl.ocks.org/milkbread/11000965
+
+
+////////////////////////////////////////////////
+How can I share code between Node.js and the browser?
+http://stackoverflow.com/a/8420905
+
+
+////////////////////////////////////////////////
+"fat models, skinny controllers, stupid views"
+http://softwareengineering.stackexchange.com/a/101865
 
