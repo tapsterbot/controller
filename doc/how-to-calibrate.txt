@@ -1,0 +1,26 @@
+
+
+## macOS
+
+1) Launch Node.js server
+
+  $ cd <controller-home>
+  $ node server.js
+
+
+2) Launch Calibration Page on Mobile Device
+
+  <open a new terminal window>
+  $ LOCALIP=`ipconfig getifaddr en0`; echo $LOCALIP
+  $ adb shell am start -a android.intent.action.VIEW -d "http://$LOCALIP:8080/calibrate/"
+
+
+3) Open Controller UI in Desktop Browser
+
+  open http://<local-ip-address>:8080/
+  
+  
+4) Run Calibration:
+
+    1) In Node.js Server REPL:
+      >> robot.calibrate()

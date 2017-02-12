@@ -1,0 +1,30 @@
+svg {
+  display:block;
+  border:1px;
+  solid #ccc;
+  position:absolute;
+  top:5%;
+  left:5%;
+  width:90%;
+  height:90%;
+  fill: rgba(100,100,100,1);
+}
+
+#heading {
+  font-size: 10;
+  font-family: Verdana, sans-serif;
+  text-anchor: middle;
+}
+
+.point {
+  fill: rgba(200,200,200,1);
+  stroke: black;
+  stroke-width: .5;
+}
+
+body {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

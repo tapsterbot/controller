@@ -11,23 +11,16 @@
   </head>
   <body>
 
-  <div class="container">    
+  <div class="container">
       <div class='select' style="visibility:hidden">
         <label for='videoSource'>Video source:&nbsp;&nbsp;</label><select id='videoSource'></select>
       </div>
-      <canvas id="canvas" style="border: 1px solid red; position:absolute"></canvas>
-      <div class="simulator" align="center">          
+      <canvas id="canvas" style="border: 1px solid red; position:absolute; visibility: hidden;"></canvas>
+      <div class="simulator" align="center">
           <video id="video" style="visibility:hidden"></video>
           <!-- <svg id="svg" viewBox="-75 -75 150 200"></svg> -->
-          <svg id="svg" viewBox="-60 -80 120 160"></svg>
-          <div class="center-block" style="visibility:hidden">
-              <select class="selectpicker" data-style="btn-primary" data-width="auto">
-                  <option>Nexus 5</option>
-                  <option>Nexus 5X</option>
-                  <option>iPhone 6</option>
-                  <option>iPhone 6 Plus</option>
-              </select>
-          </div>
+          <svg id="svg" viewBox="-10 -75 20 150"></svg>
+
       </div><!-- end "simulator" -->
   </div><!-- end "container" -->
 
@@ -36,12 +29,18 @@
     <script src="vendor/snap/snap.svg-min.js" type="text/javascript" charset="utf-8"></script>
     <script src="vendor/bootstrap-3.2.0-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
     <script src="vendor/silviomoreto-bootstrap-select/js/bootstrap-select.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/circle-circle-intersect.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/circle-intersect.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/util.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/simulator.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/device.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/axes.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/shoulder.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/upperarm.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/forearm.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/pointer.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/tap.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/sidekick.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/sidekick-setup.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/minicap.js" type="text/javascript" charset="utf-8"></script>
-    
-    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-
   </body>
 </html>

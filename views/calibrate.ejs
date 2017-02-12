@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <link href="/vendor/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/calibrate.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <svg id="svg" viewBox="-60 -80 120 160">
+        <circle class="point" id="point1" cx="0" cy="-40" r="10"/>
+
+        <text id="heading" x="0" y="0">
+          Sidekick Calibration
+        </text>
+
+        <circle class="point" id="point1" cx="0" cy="40" r="10"/>
+
+      </svg>
+    </div>
+    <script src="/vendor/socket.io/socket.io.js"></script>
+    <script src="/js/calibrate/calibrate.js"></script>
+  </body>
+</html>

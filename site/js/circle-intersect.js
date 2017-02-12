@@ -1,87 +1,137 @@
-// circle-intersect.js
-// Determine the points where 2 circles in a common plane intersect.
+// Circle Line Collision
+// Source: http://devmag.org.za/2009/04/17/basic-collision-detection-in-2d-part-2/
+// Input:
+//   p1  Point  First point describing the line
+//   p2  Point  Second point describing the line
+//   center  Point  The centre of the circle
+//   radius  Floating-point  The circle's radius
 //
-//  intersection(
-//               // 1st circle - center coordinates and radius
-//               x0, y0, r0,
-//               // 2nd circle
-//               x1, y1, r1)
-//  returns:
-//               // status code (0 for error, 1 for success)
-//               [ status_code,
-//               // 1st intersection point
-//               [x3, y3,              
-//               // 2nd intersection point
-//               x4, y4x]]
+// Output:
+//   The point(s) of the collision, or null if no collision exists.
 //
-// Based on "Intersection of two circles" (http://paulbourke.net/geometry/circlesphere/)
-// C version by Tim Voght 3/26/2005. "This is a public domain work."
-// Port of C version to JavaScript, Copyright (c) 2014 Jason R. Huggins (MIT License)
 
-function intersection(x0, y0, r0, x1, y1, r1) {
-  var a, dx, dy, d, h, rx, ry;
-  var x2, y2;
+(function(exports){
 
-  // dx and dy are the vertical and horizontal distances between
-  // the circle centers.
-  dx = x1 - x0;
-  dy = y1 - y0;
+  function circleLineIntersection(p1, p2, circle) {
+  	// Transform to local coordinates
+  	var localP1 = {x: (p1.x - circle.center.x), y: (p1.y - circle.center.y)}
+  	var localP2 = {x: (p2.x - circle.center.x), y: (p2.y - circle.center.y)}
 
-  // Determine the straight-line distance between the centers.
-  d = Math.sqrt((dy*dy) + (dx*dx));
+  	// Precalculate this value. We use it often
+    var p2p1 = {x: (localP2.x - localP1.x),
+                y: (localP2.y - localP1.y)}
 
-  // Check for solvability.
-  if (d > (r0 + r1)) {
-    // No solution. Circles do not intersect.
-    return [0, []];
+  	var a = (p2p1.x * p2p1.x) + (p2p1.y * p2p1.y)
+  	var b = 2 * ((p2p1.x * localP1.x) + (p2p1.y * localP1.y))
+  	var c = (localP1.x * localP1.x) + (localP1.y * localP1.y) - (circle.radius * circle.radius)
+  	var delta = b * b - (4 * a * c)
+
+  	if (delta < 0) {
+      return []
+    } else if (delta === 0) { // One intersection
+      var u = -b / (2 * a)
+      // Use p1 instead of localP1 because we want our answer
+      // in global space, not the circle's local space
+      var result = {x: (p1.x + (u * p2p1.x)),
+                    y: (p1.y + (u * p2p1.y))}
+      return [result]
+  	} else if (delta > 0) { // Two intersections
+      var sqrtDelta = Math.sqrt(delta)
+      var u1 = (-b + sqrtDelta) / (2 * a)
+      var u2 = (-b - sqrtDelta) / (2 * a)
+      result = [ {x: (p1.x + (u1 * p2p1.x)),
+                      y: (p1.y + (u1 * p2p1.y))},
+                     {x: (p1.x + (u2 * p2p1.x)),
+                      y: (p1.y + (u2 * p2p1.y))}]
+      return result
+    }
   }
-  if (d < Math.abs(r0 - r1)) {
-    // No solution. One circle is contained in the other
-    return [0, []];
+
+
+  function distance(a, b) {
+    return Math.sqrt( Math.pow( (a.x - b.x), 2) + Math.pow( (a.y - b.y), 2))
   }
 
-  // 'Point 2' is the point where the line through the circle
-  // intersection points crosses the line between the circle
-  // centers.
+  function isBetween(a, c, b) {
+      return (distance(a, c) + distance(c, b) === distance(a, b))
+  }
 
-  // Determine the distance from point 0 to point 2.
-  a = ((r0 * r0) - (r1 * r1) + (d * d)) / (2.0 * d) ;
+  function isBetweenFilter(point) {
+      return (distance(this.a, point) + distance(point, this.b) === distance(this.a, this.b))
+  }
 
-  // Determine the coordinates of point 2.
-  x2 = x0 + (dx * a/d);
-  y2 = y0 + (dy * a/d);
+  function circleLineSegmentIntersection(p1, p2, c) {
+    var linePoints = circleLineIntersection(p1, p2, c)
+    var segmentPoints = linePoints.filter(isBetweenFilter, {a:p1, b:p2})
+    return segmentPoints
+  }
 
-  // Determine the distance from point 2 to either of the
-  // intersection points.
-  h = Math.sqrt((r0 * r0) - (a * a));
 
-  // Now determine the offsets of the intersection points from
-  // point 2.
-  rx = -dy * (h/d);
-  ry = dx * (h/d);
+  function circlePolygonIntersection(poly, circle) {
+    var point1, point2, linepoints, segmentPoints
+    var allPoints = []
+    var uniquePoints = []
 
-  // Determine the absolute intersection points.
-  x3 = x2 + rx;
-  y3 = y2 + ry;  
+    for (var i=0; i < poly.length; i++) {
+      point1 = poly[i]
+      if (i == poly.length-1) {
+        point2 = poly[0]
+      } else {
+        point2 = poly[i+1]
+      }
+      segmentPoints = circleLineSegmentIntersection(point1, point2, circle)
+      allPoints = allPoints.concat(segmentPoints)
+    }
+    return allPoints
+  }
 
-  x4 = x2 - rx;
-  y4 = y2 - ry;
+  exports.circleLineIntersection = circleLineIntersection
+  exports.circlePolygonIntersection = circlePolygonIntersection
 
-  return [1, [x3, y3, x4, y4]];
-};
+}(typeof exports === 'undefined' ? this.cintersect = {} : exports))
 
-function test_intersection(x0, y0, r0, x1, y1, r1) {
-  console.log("x0=%d, y0=%d, r0=%d, x1=%d, y1=%d, r1=%d :\n",
-          x0, y0, r0, x1, y1, r1);
-  
-  result = intersection(x0, y0, r0, x1, y1, r1);
-  
-  console.log(result + '\n')
-};
 
-function runTests() {
-  test_intersection(-1, -1, 1.5, 1, 1, 2);
-  test_intersection(1, -1, 1.5, -1, 1, 2);
-  test_intersection(-1, 1, 1.5, 1, -1, 2);
-  test_intersection(1, 1, 1.5, -1, -1, 2);
-}
+// polygon = [{x:1, y:0}, {x:1, y:1}, {x:-1, y:0}, {x:-1, y:-1}]
+// hitpoints.findIndex(i => (i.x == -1) && (i.y == 0))
+// polygon.findIndex(i => (i.x == -1) && (i.y == 0))
+// circlePolygonIntersection(polygon, {center:{x:2, y:0}, radius:1})
+
+/* Test:
+    > var point1 = {x: 0, y: -5}
+    > var point2 = {x: 0, y: 5}
+    > var circle = {'center': {x: 5, y: 0}, 'radius': 1}
+
+
+    // Test line intersection
+    > circleLineIntersection(point1, point2, circle)
+    []
+
+    > circle.radius = 5
+    > circleLineIntersection(point1, point2, circle)
+    [ { x: 0, y: 0 } ]
+
+    > circle.center = {x: 0, y: 0}
+    > circleLineIntersection(point1, point2, circle)
+    [ { x: 0, y: 5 }, { x: 0, y: -5 } ]
+
+
+
+    // Test line segment intersection
+    > radius = 1
+    > circle.center = { x: 0, y: 4.5 }
+    > circleLineIntersection(point1, point2, circle)
+    [ { x: 0, y: 5.5 }, { x: 0, y: 3.5 } ]
+
+    > circleLineSegmentIntersection(point1, point2, circle)
+    [ { x: 0, y: 3.5 } ]
+
+    > circle.center = { x: 0, y: 10 }
+    > circleLineIntersection(point1, point2, circle)
+    [ { x: 0, y: 11 }, { x: 0, y: 9 } ]
+
+    > circleLineSegmentIntersection(point1, point2, circle)
+    > []
+
+*/
+
+// module.exports = circleLineIntersection

@@ -18,11 +18,13 @@
   },
   "main": "server.js",
   "dependencies": {
+    "ejs": "*",
     "express": "*",
     "johnny-five": "*",
     "minimist": "^1.2.0",
     "socket.io": "*",
-    "ws": "*"
+    "ws": "*",
+    "mathjs": "*"
   },
   "scripts": {
     "start": "node server.js"

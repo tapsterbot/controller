@@ -61,12 +61,12 @@ canvas.addEventListener('mouseup', function(evt) {
 
 ws.onclose = function() {
   //alert("onclose received, args = " + JSON.stringify(arguments))
-  console.log('onclose', arguments)
+  //console.log('onclose', arguments)
 }
 
 ws.onerror = function() {
   //alert("onerror received, args = " + JSON.stringify(arguments))
-  console.log('onerror', arguments)
+  //console.log('onerror', arguments)
 }
 
 ws.onmessage = function(message) {
@@ -114,8 +114,9 @@ ws.onopen = function() {
   // Get position svg rect
   deviceWidth = parseInt($('#device')[0].getBoundingClientRect().width - 20) + 'px'
   deviceLeft = parseInt($('#device')[0].getBoundingClientRect().left + 10) + 'px'
-  deviceTop = parseInt($('#device')[0].getBoundingClientRect().top + 80) + 'px'
+  deviceTop = parseInt($('#device')[0].getBoundingClientRect().top + 50) + 'px'
   $('#canvas').css({
+    'visibility': 'visible',
     'width':deviceWidth,
     'left':deviceLeft,
     'top':deviceTop
